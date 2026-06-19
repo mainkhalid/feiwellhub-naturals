@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply font-body text-text-main bg-cream antialiased;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display font-normal leading-tight text-bark;
+  }
+
+  h1 { font-size: clamp(2.2rem, 5.5vw, 3.8rem); }
+  h2 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); }
+  h3 { font-size: clamp(1.05rem, 2vw, 1.3rem); }
+
+  em   { @apply italic text-sage; }
+  a    { @apply no-underline; }
+  img  { @apply block max-w-full; }
+}
+
+@layer components {
+  /* ── SECTION LABEL ── */
+  .section-label {
+    @apply font-body text-xs font-semibold tracking-widest uppercase text-sage;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    @apply inline-flex items-center gap-2 font-body text-sm font-semibold tracking-wide
+           px-6 py-3 rounded-xl border border-transparent transition-all duration-200
+           whitespace-nowrap cursor-pointer;
+  }
+  .btn-primary {
+    @apply bg-bark text-cream border-bark;
+    &:hover { @apply bg-bark-mid -translate-y-px shadow-[0_6px_20px_rgba(61,43,31,0.2)]; }
+  }
+  .btn-ghost {
+    @apply bg-transparent text-bark border-bark/20;
+    &:hover { @apply bg-cream-dark border-bark/40; }
+  }
+  .btn-outline {
+    @apply bg-transparent text-sage border-sage;
+    &:hover { @apply bg-sage text-white; }
+  }
+  .btn-sm { @apply px-4 py-2 text-xs; }
+
+  /* ── FORM INPUTS ── */
+  .form-input {
+    @apply w-full px-4 py-3 border-2 border-gray-200 rounded-xl font-body text-sm
+           text-text-main bg-white outline-none transition-all duration-150;
+    &:focus { @apply border-sage shadow-[0_0_0_3px_rgba(106,140,105,0.12)] bg-white; }
+    &::placeholder { @apply text-text-muted/60; }
+  }
+  .form-label {
+    @apply text-sm font-semibold text-bark mb-1.5 block;
+  }
+
+  /* ── NAV LINK ── */
+  .nav-link {
+    @apply relative text-sm text-text-muted transition-colors duration-150;
+    &:hover, &.active { @apply text-sage; }
+  }
+
+  /* ── FILTER LINK ── */
+  .filter-link {
+    @apply block px-3 py-2 rounded-lg text-sm text-text-muted transition-all duration-150;
+    &:hover  { @apply bg-sage-pale text-sage; }
+    &.active { @apply bg-sage text-white font-medium; }
+  }
+}
+
+/* ── MARQUEE ── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-33.333%); }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Star fill utility */
+.fill-gold { fill: #C4963A; }
