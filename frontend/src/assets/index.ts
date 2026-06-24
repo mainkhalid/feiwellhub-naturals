@@ -1,3 +1,4 @@
+import logo from './images/feiwell-logo.png'
 export { default as nerveSupplements } from './images/nerve-supplements.jpg'
 export { default as heroAloeSplash }    from './images/hero-aloe-splash.jpg'
 export { default as immuneSupport }     from './images/immune-support.jpg'
@@ -6,7 +7,6 @@ export { default as heroEssentialOil }  from './images/hero-essential-oil-drop.j
 export {default as jointSupplements} from './images/joint-supplements.jpg'
 export {default as vitaminSupplements} from './images/vitamin-supplements.jpg'
 
-// ── Hero slides ───────────────────────────────────────
 export const HERO_SLIDES = [
   {
     id:      1,
@@ -60,7 +60,6 @@ export const HERO_SLIDES = [
   },
 ]
 
-// ── Promo banners ─────────────────────────────────────
 export const PROMO_BANNERS = [
   {
     id:      1,
@@ -82,13 +81,13 @@ export const PROMO_BANNERS = [
   },
 ]
 
-// ── Site info ─────────────────────────────────────────
 export const SITE = {
   name:      'Feiwellhub Naturals',
   tagline:   'Naturals',
-  whatsapp:  '254700000000', // ← update with real number
-  email:     'hello@feiwellhub.co.ke',
-  phone:     '+254 700 000 000',
+  logo,
+  whatsapp:  '254715945238',
+  email:     'sales@feiwellhub.co.ke',
+  phone:     '+254 715 945 238',
   location:  'Nairobi, Kenya',
   instagram: '',
   facebook:  '',

@@ -1,0 +1,63 @@
+services:
+  # ── Laravel API ───────────────────────────────────────
+  - type: web
+    name: feiwellhub-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile.render
+    dockerContext: .
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: Feiwellhub Naturals
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true          # Render auto-generates this
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: feiwellhub-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: feiwellhub-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: feiwellhub-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: feiwellhub-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: feiwellhub-db
+          property: password
+      - key: CACHE_DRIVER
+        value: redis
+      - key: QUEUE_CONNECTION
+        value: redis
+      - key: SESSION_DRIVER
+        value: redis
+      - key: REDIS_URL
+        sync: false                  # Set manually from Upstash
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: error
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false                  # Set manually after Cloudflare deploy
+      - key: SANCTUM_STATEFUL_DOMAINS
+        sync: false                  # Set manually after Cloudflare deploy
+
+databases:
+  # ── PostgreSQL ────────────────────────────────────────
+  - name: feiwellhub-db
+    plan: free
+    databaseName: feiwellhub
+    user: feiwellhub
