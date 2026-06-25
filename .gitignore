@@ -43,6 +43,17 @@ build/
 *.log
 npm-debug.log*
 
+# Build artifacts
+.next/
+.next/cache/
+.open-next/
+out/
+dist/
+build/
+.npm
+*.tsbuildinfo
+next-env.d.ts
+
 # Uploads (only if intentional)
 public/uploads/
 storage/app/public/
