@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Facebook, Twitter } from "lucide-react";
+import { FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { SITE } from "@/assets";
 import Image from "next/image";
 
@@ -42,16 +42,16 @@ export default function Footer() {
             <div className="flex gap-3">
               {[
                 {
-                  Icon: Instagram,
+                  Icon: FaInstagram,
                   href: SITE.instagram || "#",
                   label: "Instagram",
                 },
                 {
-                  Icon: Facebook,
+                  Icon: FaFacebookF,
                   href: SITE.facebook || "#",
                   label: "Facebook",
                 },
-                { Icon: Twitter, href: SITE.twitter || "#", label: "Twitter" },
+                { Icon: FaXTwitter, href: SITE.twitter || "#", label: "Twitter" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
