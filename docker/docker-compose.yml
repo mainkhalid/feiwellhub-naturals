@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   # ── Redis ───────────────────────────────────────────────────
@@ -33,17 +33,24 @@ services:
       - "8000:8000"
 
   web:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
-      args:
-        NEXT_PUBLIC_API_URL: http://localhost:8000
-        NEXT_PUBLIC_SITE_URL: http://localhost
-    restart: unless-stopped
-    depends_on:
-      - api
-    ports:
-      - "3000:3000"
+   build:
+     context: ../frontend
+     dockerfile: Dockerfile
+     args:
+       NEXT_PUBLIC_API_URL: http://api:8000
+       NEXT_PUBLIC_SITE_URL: http://localhost
+
+   environment:
+     NEXT_PUBLIC_API_URL: http://api:8000
+     NEXT_PUBLIC_SITE_URL: http://localhost
+
+   restart: unless-stopped
+
+   depends_on:
+     - api
+
+   ports:
+     - "3000:3000"
 
   nginx:
     image: nginx:alpine

@@ -29,12 +29,14 @@ export default async function ProductsPage({ searchParams }: Props) {
   let products: Product[]    = []
 
   try {
-    ;[categories, products] = await Promise.all([
-      getCategories(),
-      getProducts(resolvedParams.category),
-    ])
-  } catch { /* API unavailable */ }
-
+  ;[categories, products] = await Promise.all([
+    getCategories(),
+    getProducts(resolvedParams.category),
+  ])
+} catch (error) {
+  console.error('[ProductsPage]', error)
+  throw error
+}
   const activeCategory = categories.find(c => c.slug === resolvedParams.category)
   const pageTitle      = activeCategory?.name ?? 'All Products'
 
