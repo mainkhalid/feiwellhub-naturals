@@ -10,12 +10,13 @@ import { Category, Product } from '@/types'
 export const dynamic = 'force-dynamic'
 
 interface Props {
-  searchParams: { category?: string }
+  searchParams: Promise<{ category?: string }>
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const resolvedParams = await searchParams
   const categories = await getCategories()
-  const active = categories.find((c: Category) => c.slug === searchParams.category)
+  const active = categories.find((c: Category) => c.slug === resolvedParams.category)
   return {
     title: active ? active.name : 'All Products',
     description: 'Browse our full range of premium food supplements, herbal teas, essential oils and natural skincare.',
@@ -23,17 +24,18 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 }
 
 export default async function ProductsPage({ searchParams }: Props) {
+  const resolvedParams = await searchParams
   let categories: Category[] = []
   let products: Product[]    = []
 
   try {
     ;[categories, products] = await Promise.all([
       getCategories(),
-      getProducts(searchParams.category),
+      getProducts(resolvedParams.category),
     ])
   } catch { /* API unavailable */ }
 
-  const activeCategory = categories.find(c => c.slug === searchParams.category)
+  const activeCategory = categories.find(c => c.slug === resolvedParams.category)
   const pageTitle      = activeCategory?.name ?? 'All Products'
 
   return (
@@ -65,13 +67,13 @@ export default async function ProductsPage({ searchParams }: Props) {
               </h3>
               <nav className="flex flex-col gap-1">
                 <Link href="/products"
-                  className={`filter-link ${!searchParams.category ? 'active' : ''}`}>
+                  className={`filter-link ${!resolvedParams.category ? 'active' : ''}`}>
                   All Products
                 </Link>
                 {categories.map(cat => (
                   <Link key={cat.id}
                     href={`/products?category=${cat.slug}`}
-                    className={`filter-link ${searchParams.category === cat.slug ? 'active' : ''}`}>
+                    className={`filter-link ${resolvedParams.category === cat.slug ? 'active' : ''}`}>
                     {cat.name}
                   </Link>
                 ))}

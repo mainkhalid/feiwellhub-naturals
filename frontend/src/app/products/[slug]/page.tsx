@@ -7,20 +7,14 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { getProduct, formatPrice } from '@/lib/api'
 
+export const dynamic = 'force-dynamic'
 interface Props {
-  params: { slug: string }
-}
-
-// Don't pre-fetch slugs at build time — API isn't available then.
-// Pages generate on first request and are cached via ISR.
-export const dynamicParams = true
-
-export async function generateStaticParams() {
-  return []
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = await getProduct(params.slug)
+  const { slug } = await params
+  const product = await getProduct(slug)
   if (!product) return { title: 'Product Not Found' }
   return {
     title: product.name,
@@ -34,7 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductDetailPage({ params }: Props) {
-  const product = await getProduct(params.slug)
+  const { slug } = await params
+  const product = await getProduct(slug)
   if (!product) notFound()
 
   return (

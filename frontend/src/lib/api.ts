@@ -13,7 +13,7 @@ export async function getProducts(categorySlug?: string): Promise<Product[]> {
     ? `${API_BASE}/api/products?category=${categorySlug}`
     : `${API_BASE}/api/products`
   try {
-    const res = await fetch(url, { next: { revalidate: 60 } })
+    const res = await fetch(url, { cache: 'no-store' })
     if (!res.ok) return []
     const json = await res.json()
     return json.data ?? []
@@ -23,7 +23,7 @@ export async function getProducts(categorySlug?: string): Promise<Product[]> {
 export async function getFeaturedProducts(limit = 4): Promise<Product[]> {
   try {
     const res = await fetch(`${API_BASE}/api/products/featured?limit=${limit}`, {
-      next: { revalidate: 60 },
+      cache: 'no-store',
     })
     if (!res.ok) return []
     const json = await res.json()
@@ -34,7 +34,7 @@ export async function getFeaturedProducts(limit = 4): Promise<Product[]> {
 export async function getProduct(slug: string): Promise<Product | null> {
   try {
     const res = await fetch(`${API_BASE}/api/products/${slug}`, {
-      next: { revalidate: 60 },
+      cache: 'no-store',
     })
     if (!res.ok) return null
     const json = await res.json()
@@ -45,7 +45,7 @@ export async function getProduct(slug: string): Promise<Product | null> {
 export async function getCategories(): Promise<Category[]> {
   try {
     const res = await fetch(`${API_BASE}/api/categories`, {
-      next: { revalidate: 3600 },
+      cache: 'no-store',
     })
     if (!res.ok) return []
     const json = await res.json()
@@ -56,7 +56,7 @@ export async function getCategories(): Promise<Category[]> {
 export async function getProductSlugs(): Promise<string[]> {
   try {
     const res = await fetch(`${API_BASE}/api/products/slugs`, {
-      next: { revalidate: 3600 },
+      cache: 'no-store',
     })
     if (!res.ok) return []
     const json = await res.json()
