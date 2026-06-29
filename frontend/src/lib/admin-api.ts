@@ -1,8 +1,8 @@
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ||
-  (typeof window === "undefined"
-    ? "http://api:8000"
-    : "http://localhost:8000");
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+
+if (!API_BASE) {
+  throw new Error('NEXT_PUBLIC_API_URL is missing')
+}
 // ── Token helpers ─────────────────────────────────────
 export function getToken(): string | null {
   if (typeof window === 'undefined') return null
