@@ -14,7 +14,7 @@ const FAQS = [
     questions: [
       {
         q: 'Are your products 100% natural?',
-        a: 'Yes. Every product at Feiwellhub Naturals is formulated with whole, natural ingredients. We use no synthetic fillers, binders, artificial colours or flavours. What you see on the label is what\'s in the bottle.',
+        a: 'Yes. Every product at Faiwellhub Naturals is formulated with whole, natural ingredients. We use no synthetic fillers, binders, artificial colours or flavours. What you see on the label is what\'s in the bottle.',
       },
       {
         q: 'Are your supplements third-party tested?',

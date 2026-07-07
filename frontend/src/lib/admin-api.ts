@@ -3,6 +3,15 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL
 if (!API_BASE) {
   throw new Error('NEXT_PUBLIC_API_URL is missing')
 }
+let productsCache: any = null
+let productsCacheTime = 0
+const PRODUCTS_TTL = 30 * 1000 // 30 seconds
+
+const productCache = new Map<number, any>()
+
+let categoriesCache: any = null
+let categoriesCacheTime = 0
+const CATEGORY_TTL = 5 * 60 * 1000 // 5 minutes
 // ── Token helpers ─────────────────────────────────────
 export function getToken(): string | null {
   if (typeof window === 'undefined') return null
@@ -65,41 +74,113 @@ export async function getNotifications() {
 
 // ── Products ──────────────────────────────────────────
 export async function adminGetProducts() {
+  const now = Date.now()
+
+  if (
+    productsCache &&
+    now - productsCacheTime < PRODUCTS_TTL
+  ) {
+    return productsCache
+  }
+
   const res = await apiFetch('/admin/products')
-  return res.json()
+  const data = await res.json()
+
+  productsCache = data
+  productsCacheTime = now
+
+  return data
 }
 export async function adminGetProduct(id: number) {
+  if (productCache.has(id)) {
+    return productCache.get(id)
+  }
+
   const res = await apiFetch(`/admin/products/${id}`)
-  return res.json()
+  const data = await res.json()
+
+  productCache.set(id, data)
+
+  return data
 }
 export async function adminCreateProduct(data: object) {
-  const res = await apiFetch('/admin/products', { method: 'POST', body: JSON.stringify(data) })
+  const res = await apiFetch('/admin/products', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+
+  productsCache = null
+
   return res.json()
 }
 export async function adminUpdateProduct(id: number, data: object) {
-  const res = await apiFetch(`/admin/products/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+  const res = await apiFetch(`/admin/products/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+
+  productsCache = null
+  productCache.delete(id)
+
   return res.json()
 }
 export async function adminDeleteProduct(id: number) {
-  const res = await apiFetch(`/admin/products/${id}`, { method: 'DELETE' })
+  const res = await apiFetch(`/admin/products/${id}`, {
+    method: 'DELETE',
+  })
+
+  productsCache = null
+  productCache.delete(id)
+
   return res.json()
 }
 
 // ── Categories ────────────────────────────────────────
 export async function adminGetCategories() {
+  const now = Date.now()
+
+  if (
+    categoriesCache &&
+    now - categoriesCacheTime < CATEGORY_TTL
+  ) {
+    return categoriesCache
+  }
+
   const res = await apiFetch('/admin/categories')
-  return res.json()
+  const data = await res.json()
+
+  categoriesCache = data
+  categoriesCacheTime = now
+
+  return data
 }
 export async function adminCreateCategory(data: object) {
-  const res = await apiFetch('/admin/categories', { method: 'POST', body: JSON.stringify(data) })
+  const res = await apiFetch('/admin/categories', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+
+  categoriesCache = null
+
   return res.json()
 }
 export async function adminUpdateCategory(id: number, data: object) {
-  const res = await apiFetch(`/admin/categories/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+  const res = await apiFetch(`/admin/categories/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+
+  categoriesCache = null
+
   return res.json()
 }
 export async function adminDeleteCategory(id: number) {
-  const res = await apiFetch(`/admin/categories/${id}`, { method: 'DELETE' })
+  const res = await apiFetch(`/admin/categories/${id}`, {
+    method: 'DELETE',
+  })
+
+  categoriesCache = null
+
   return res.json()
 }
 

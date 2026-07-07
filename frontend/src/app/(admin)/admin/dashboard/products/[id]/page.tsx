@@ -18,9 +18,6 @@ export default function EditProductPage() {
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    console.log('params:', params)
-    console.log('id:', id)
-
     if (!Number.isFinite(id)) return
 
     adminGetProduct(id).then(res => setProduct(res.data))

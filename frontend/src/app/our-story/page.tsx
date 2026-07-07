@@ -28,7 +28,7 @@ const TIMELINE = [
   },
   {
     year: '2022',
-    title: 'Feiwellhub is Born',
+    title: 'Faiwellhub is Born',
     body: `${SITE.name} officially launched with 12 products. Within the first three months, we had customers across Nairobi, Mombasa and Nakuru. The demand for honest, affordable natural supplements was clearly there.`,
   },
   {
@@ -95,10 +95,10 @@ export default function OurStoryPage() {
           <div className="w-[min(1280px,100%-2rem)] mx-auto text-center max-w-[680px]">
             <Leaf size={28} className="text-white/50 mx-auto mb-5" />
             <blockquote className="font-display text-2xl text-white leading-snug mb-5 italic">
-              "I didn't start Feiwellhub to build a business. I started it because I needed
+              "I didn't start Faiwellhub to build a business. I started it because I needed
               something that didn't exist — and I believed other people needed it too."
             </blockquote>
-            <cite className="text-white/60 text-sm not-italic">— Feiwellhub Founder</cite>
+            <cite className="text-white/60 text-sm not-italic">— Faiwellhub Founder</cite>
           </div>
         </section>
 

@@ -6,13 +6,18 @@ if (!API_BASE) {
   throw new Error('NEXT_PUBLIC_API_URL is missing')
 }
 
+const PRODUCT_REVALIDATE = 60 * 60 * 24 // 24 hours
+const CATEGORY_REVALIDATE = 60 * 60 * 24 * 7 // 7 days
+
 export async function getProducts(categorySlug?: string): Promise<Product[]> {
   const url = categorySlug
     ? `${API_BASE}/api/products?category=${encodeURIComponent(categorySlug)}`
     : `${API_BASE}/api/products`
 
   const res = await fetch(url, {
-    cache: 'no-store',
+    next: {
+      revalidate: PRODUCT_REVALIDATE,
+    },
   })
 
   if (!res.ok) {
@@ -27,7 +32,9 @@ export async function getFeaturedProducts(limit = 4): Promise<Product[]> {
   const res = await fetch(
     `${API_BASE}/api/products/featured?limit=${limit}`,
     {
-      cache: 'no-store',
+      next: {
+        revalidate: PRODUCT_REVALIDATE,
+      },
     }
   )
 
@@ -43,7 +50,9 @@ export async function getProduct(slug: string): Promise<Product | null> {
   const res = await fetch(
     `${API_BASE}/api/products/${encodeURIComponent(slug)}`,
     {
-      cache: 'no-store',
+      next: {
+        revalidate: PRODUCT_REVALIDATE,
+      },
     }
   )
 
@@ -61,7 +70,9 @@ export async function getProduct(slug: string): Promise<Product | null> {
 
 export async function getCategories(): Promise<Category[]> {
   const res = await fetch(`${API_BASE}/api/categories`, {
-    cache: 'no-store',
+    next: {
+      revalidate: CATEGORY_REVALIDATE,
+    },
   })
 
   if (!res.ok) {
@@ -79,7 +90,9 @@ export async function getCategories(): Promise<Category[]> {
 
 export async function getProductSlugs(): Promise<string[]> {
   const res = await fetch(`${API_BASE}/api/products/slugs`, {
-    cache: 'no-store',
+    next: {
+      revalidate: PRODUCT_REVALIDATE,
+    },
   })
 
   if (!res.ok) {

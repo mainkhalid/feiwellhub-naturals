@@ -3,27 +3,27 @@ import './globals.css'
 import WhatsAppWidget from '@/components/ui/WhatsAppWidget'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://feiwellhub.co.ke'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://faiwellhub.co.ke'),
   title: {
-    default: 'Feiwellhub Naturals — Premium Herbal Supplements',
-    template: '%s | Feiwellhub Naturals',
+    default: 'Faiwellhub Naturals — Premium Herbal Supplements',
+    template: '%s | Faiwellhub Naturals',
   },
   description:
     'Premium food supplements, herbal teas, essential oils and natural skincare. Science-backed, nature-sourced. Delivered across Nairobi.',
   keywords: [
     'food supplements', 'herbal supplements', 'moringa', 'ashwagandha',
-    'natural wellness', 'organic', 'Kenya', 'Nairobi', 'Feiwellhub',
+    'natural wellness', 'organic', 'Kenya', 'Nairobi', 'Faiwellhub',
   ],
   openGraph: {
     type:     'website',
-    siteName: 'Feiwellhub Naturals',
-    title:    'Feiwellhub Naturals — Premium Herbal Supplements',
+    siteName: 'Faiwellhub Naturals',
+    title:    'Faiwellhub Naturals — Premium Herbal Supplements',
     description: 'Premium food supplements, herbal teas, essential oils and natural skincare.',
     locale:   'en_KE',
   },
   twitter: {
     card:        'summary_large_image',
-    title:       'Feiwellhub Naturals',
+    title:       'Faiwellhub Naturals',
     description: 'Premium food supplements and herbal wellness products.',
   },
   robots: {

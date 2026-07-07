@@ -7,7 +7,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { getProduct, formatPrice } from '@/lib/api'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 86400 
 interface Props {
   params: Promise<{ slug: string }>
 }

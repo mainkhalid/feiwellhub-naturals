@@ -7,7 +7,7 @@ import ProductCard from '@/components/ui/ProductCard'
 import { getProducts, getCategories } from '@/lib/api'
 import { Category, Product } from '@/types'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 86400 
 
 interface Props {
   searchParams: Promise<{ category?: string }>

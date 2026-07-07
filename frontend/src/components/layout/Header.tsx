@@ -291,11 +291,11 @@ export default function Header() {
         <Link
           href="/"
           className="flex items-center gap-2.5 shrink-0"
-          aria-label="Feiwellhub Naturals home"
+          aria-label="Faiwellhub Naturals home"
         >
           <Image
             src={SITE.logo}
-            alt="Feiwellhub Naturals"
+            alt="Faiwellhub Naturals"
             width={60}
             height={50}
             className="object-contain"

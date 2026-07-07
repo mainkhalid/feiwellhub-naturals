@@ -12,7 +12,7 @@ import ProductCard from '@/components/ui/ProductCard'
 import { getFeaturedProducts, getCategories } from '@/lib/api'
 import { SITE } from '@/assets'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: `${SITE.name} — Premium Health Supplements`,

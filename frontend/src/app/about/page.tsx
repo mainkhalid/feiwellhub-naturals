@@ -35,9 +35,9 @@ const VALUES = [
 
 const TEAM = [
   {
-    name:  'Feiwellhub Founder',
+    name:  'Faiwellhub Founder',
     role:  'Founder & Formulator',
-    bio:   'A passionate herbalist with over 10 years of experience in natural wellness. Started Feiwellhub after struggling to find high-quality, affordable supplements in Kenya.',
+    bio:   'A passionate herbalist with over 10 years of experience in natural wellness. Started Faiwellhub after struggling to find high-quality, affordable supplements in Kenya.',
     initial: 'F',
   },
   {
