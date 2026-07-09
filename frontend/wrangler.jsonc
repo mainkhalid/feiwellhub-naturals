@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "feiwellhub-naturals",
+  "name": "faiwellhub-naturals",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-06-25",
   "compatibility_flags": ["nodejs_compat"],
@@ -13,14 +13,14 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "feiwellhub-naturals"
+      "service": "faiwellhub-naturals"
     }
   ],
 
   "r2_buckets": [
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "feiwellhub-isr-cache"
+      "bucket_name": "faiwellhub-isr-cache"
     }
   ],
 
