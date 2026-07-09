@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -12,18 +13,24 @@ class ProductController extends Controller
     public function index(Request $request): JsonResponse
     {
         $category = $request->query('category');
+        $cacheKey = 'products:index:' . ($category ?? 'all');
 
-        $query = Product::with('category')
-            ->where('is_active', true)
-            ->orderBy('name');
+        // Cache a plain array (not Eloquent models) to avoid the
+        // deserialization issue hit previously with Redis + Eloquent.
+        $products = Cache::remember($cacheKey, 300, function () use ($category) {
+            $query = Product::with('category')
+                ->where('is_active', true)
+                ->orderBy('name');
 
-        if ($category) {
-            $query->whereHas('category', fn ($q) => $q->where('slug', $category));
-        }
+            if ($category) {
+                $query->whereHas('category', fn ($q) => $q->where('slug', $category));
+            }
 
-        $products = $query->get()->map(fn ($p) => $this->format($p))->values()->all();
+            return $query->get()->map(fn ($p) => $this->format($p))->values()->all();
+        });
 
-        return response()->json(['data' => $products]);
+        return response()->json(['data' => $products])
+            ->header('Cache-Control', 'public, max-age=300');
     }
 
     // GET /api/products/featured

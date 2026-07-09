@@ -82,11 +82,11 @@ export const PROMO_BANNERS = [
 ]
 
 export const SITE = {
-  name:      'Feiwellhub Naturals',
+  name:      'Faiwellhub Naturals',
   tagline:   'Naturals',
   logo,
   whatsapp:  '254715945238',
-  email:     'sales@feiwellhub.co.ke',
+  email:     'sales@faiwellhub.co.ke',
   phone:     '+254 715 945 238',
   location:  'Nairobi, Kenya',
   instagram: '',
