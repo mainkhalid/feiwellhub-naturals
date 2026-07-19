@@ -7,6 +7,11 @@ export { default as heroEssentialOil }  from './images/hero-essential-oil-drop.j
 export {default as jointSupplements} from './images/joint-supplements.jpg'
 export {default as vitaminSupplements} from './images/vitamin-supplements.jpg'
 
+export { default as kebsBadge }        from './images/kebsBadge.png'
+export { default as gmpBadge }         from './images/gmpBadge.png'
+export { default as naturalBadge }     from './images/naturalBadge.jpg'
+export { default as labBadge }         from './images/labTestedBadge.jpg'
+
 export const HERO_SLIDES = [
   {
     id:      1,
@@ -80,6 +85,33 @@ export const PROMO_BANNERS = [
     theme:   'dark' as const,
   },
 ]
+export const TRUST_BADGES = [
+  {
+    image: require('./images/kebsBadge.png').default,
+    title: 'KEBS Certified',
+    sub: 'Kenya Bureau of Standards',
+    alt: 'Official Kenya Bureau of Standards Certification Seal',
+  },
+  {
+    image: require('./images/gmpBadge.png').default,
+    title: 'GMP Compliant',
+    sub: 'Good Manufacturing Practice',
+    alt: 'Good Manufacturing Practice Quality Assured Seal',
+  },
+  {
+    image: require('./images/naturalBadge.jpg').default,
+    title: '100% Natural',
+    sub: 'No synthetic additives',
+    alt: '100 Percent Natural Ingredients Badge',
+  },
+  {
+    image: require('./images/labTestedBadge.jpg').default,
+    title: 'Lab Tested',
+    sub: 'Every batch verified',
+    alt: 'Independent Laboratory Tested and Verified Badge',
+  },
+]
+
 
 export const SITE = {
   name:      'Faiwellhub Naturals',

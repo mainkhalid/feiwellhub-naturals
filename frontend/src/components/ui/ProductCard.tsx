@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Product } from '@/types'
 import { formatPrice } from '@/lib/api'
 import { ArrowUpRight, Star } from 'lucide-react'
+import AddToCartButton from './AddToCartButton'
 
 interface Props {
   product: Product
@@ -27,7 +28,6 @@ export default function ProductCard({ product }: Props) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
         />
-
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           {product.is_featured && (
@@ -56,43 +56,32 @@ export default function ProductCard({ product }: Props) {
           <span className="bg-white text-bark text-xs font-semibold px-4 py-2 rounded-full
                            flex items-center gap-1.5 translate-y-2 group-hover:translate-y-0
                            transition-transform duration-300">
-            View Product <ArrowUpRight size={13} />
+            View Details <ArrowUpRight size={13} />
           </span>
         </div>
       </Link>
 
       {/* Content */}
-      <div className="p-5 flex flex-col gap-1 flex-1">
+      <div className="p-4 flex flex-col gap-1 flex-1">
         <span className="text-[0.7rem] font-semibold tracking-widest uppercase text-sage">
           {product.category_name}
         </span>
-
-        <h3 className="font-display text-[1.1rem] text-bark leading-snug">
+        <h3 className="font-display text-[1.05rem] text-bark leading-snug">
           <Link href={`/products/${product.slug}`}
             className="hover:text-sage transition-colors duration-150">
             {product.name}
           </Link>
         </h3>
-
-        <p className="text-sm text-text-muted leading-relaxed flex-1 line-clamp-2 mt-0.5">
+        <p className="text-xs text-text-muted leading-relaxed flex-1 line-clamp-2 mt-0.5">
           {product.short_description}
         </p>
 
-        <div className="flex items-center justify-between mt-4 pt-4
+        <div className="flex items-center justify-between mt-3 pt-3
                         border-t border-gray-100 gap-2">
-          <div>
-            <span className="font-display text-xl font-semibold text-bark">
-              {formatPrice(product.price)}
-            </span>
-          </div>
-          <Link
-            href={`/contact?inquiry=${encodeURIComponent(product.name)}`}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold
-                       bg-sage-pale text-sage hover:bg-sage hover:text-white
-                       px-4 py-2 rounded-full transition-all duration-150"
-          >
-            Enquire
-          </Link>
+          <span className="font-display text-lg font-semibold text-bark">
+            {formatPrice(product.price)}
+          </span>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </article>

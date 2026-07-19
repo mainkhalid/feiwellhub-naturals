@@ -1,30 +1,27 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { CartProvider } from '@/context/CartContext'
+import CartDrawer from '@/components/ui/CartDrawer'
 import WhatsAppWidget from '@/components/ui/WhatsAppWidget'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://faiwellhub.co.ke'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://feiwellhub.co.ke'),
   title: {
-    default: 'Faiwellhub Naturals — Premium Herbal Supplements',
-    template: '%s | Faiwellhub Naturals',
+    default:  'Feiwellhub Naturals — Premium Health Supplements',
+    template: '%s | Feiwellhub Naturals',
   },
   description:
-    'Premium food supplements, herbal teas, essential oils and natural skincare. Science-backed, nature-sourced. Delivered across Nairobi.',
+    'Clinically-formulated supplements for nerve pain, immune support, joint health, asthma and more. Science-backed, nature-sourced. Delivered across Nairobi.',
   keywords: [
-    'food supplements', 'herbal supplements', 'moringa', 'ashwagandha',
-    'natural wellness', 'organic', 'Kenya', 'Nairobi', 'Faiwellhub',
+    'food supplements', 'nerve pain', 'neuropathy', 'immune support',
+    'joint health', 'glucosamine', 'omega-3', 'vitamin D3', 'Kenya', 'Nairobi',
   ],
   openGraph: {
     type:     'website',
-    siteName: 'Faiwellhub Naturals',
-    title:    'Faiwellhub Naturals — Premium Herbal Supplements',
-    description: 'Premium food supplements, herbal teas, essential oils and natural skincare.',
+    siteName: 'Feiwellhub Naturals',
+    title:    'Feiwellhub Naturals — Premium Health Supplements',
+    description: 'Clinically-formulated supplements for nerve pain, immune support and joint health.',
     locale:   'en_KE',
-  },
-  twitter: {
-    card:        'summary_large_image',
-    title:       'Faiwellhub Naturals',
-    description: 'Premium food supplements and herbal wellness products.',
   },
   robots: {
     index:     true,
@@ -45,9 +42,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {children}
-        {/* WhatsApp widget — visible on every page sitewide */}
-        <WhatsAppWidget />
+        <CartProvider>
+          {children}
+          {/* Cart drawer — available on every page */}
+          <CartDrawer />
+          {/* WhatsApp widget — available on every page */}
+          <WhatsAppWidget />
+        </CartProvider>
       </body>
     </html>
   )
