@@ -9,8 +9,8 @@ export {default as vitaminSupplements} from './images/vitamin-supplements.jpg'
 
 export { default as kebsBadge }        from './images/kebsBadge.png'
 export { default as gmpBadge }         from './images/gmpBadge.png'
-export { default as naturalBadge }     from './images/naturalBadge.jpg'
-export { default as labBadge }         from './images/labTestedBadge.jpg'
+export { default as naturalBadge }     from './images/naturalBadge.png'
+export { default as labBadge }         from './images/labTestedBadge.png'
 
 export const HERO_SLIDES = [
   {
@@ -99,13 +99,13 @@ export const TRUST_BADGES = [
     alt: 'Good Manufacturing Practice Quality Assured Seal',
   },
   {
-    image: require('./images/naturalBadge.jpg').default,
+    image: require('./images/naturalBadge.png').default,
     title: '100% Natural',
     sub: 'No synthetic additives',
     alt: '100 Percent Natural Ingredients Badge',
   },
   {
-    image: require('./images/labTestedBadge.jpg').default,
+    image: require('./images/labTestedBadge.png').default,
     title: 'Lab Tested',
     sub: 'Every batch verified',
     alt: 'Independent Laboratory Tested and Verified Badge',

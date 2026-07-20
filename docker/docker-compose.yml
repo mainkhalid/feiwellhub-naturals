@@ -1,7 +1,5 @@
-version: "3.9"
-
+name: faiwellhub
 services:
-  # ── Redis ───────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
     restart: unless-stopped

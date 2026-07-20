@@ -9,27 +9,31 @@ import TrustBadges from '@/components/sections/TrustBadges'
 import AddToCartButton from '@/components/ui/AddToCartButton'
 import { getProduct, formatPrice } from '@/lib/api'
 
-interface Props { params: { slug: string } }
+export const revalidate = 86400 
+interface Props {
+  params: Promise<{ slug: string }>
+}
 
-export const dynamicParams = true
 export async function generateStaticParams() { return [] }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = await getProduct(params.slug)
+  const { slug } = await params
+  const product = await getProduct(slug)
   if (!product) return { title: 'Product Not Found' }
   return {
-    title:       product.name,
+    title: product.name,
     description: product.short_description,
     openGraph: {
-      title:       product.name,
+      title: product.name,
       description: product.short_description,
-      images:      [{ url: product.image_url, width: 600, height: 450 }],
+      images: [{ url: product.image_url, width: 600, height: 450 }],
     },
   }
 }
 
 export default async function ProductDetailPage({ params }: Props) {
-  const product = await getProduct(params.slug)
+  const { slug } = await params
+  const product = await getProduct(slug)
   if (!product) notFound()
 
   return (

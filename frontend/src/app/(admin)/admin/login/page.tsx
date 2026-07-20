@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Leaf, Eye, EyeOff, AlertCircle } from 'lucide-react'
 import { login, setToken, getToken, removeToken, getMe } from '@/lib/admin-api'
+import { SITE } from "@/assets";
+import Image from "next/image";
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -89,7 +91,13 @@ export default function AdminLoginPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-12 h-12
                           bg-sage rounded-full mb-3 shadow-md">
-            <Leaf size={22} className="text-white" />
+            <Image
+                        src={SITE.logo}
+                        alt="Faiwellhub Naturals"
+                        width={60}
+                        height={50}
+                        className="object-contain"
+                      />
           </div>
           <h1 className="font-display text-2xl text-bark">Feiwellhub</h1>
           <p className="text-sm text-text-muted mt-1">Admin Dashboard</p>
